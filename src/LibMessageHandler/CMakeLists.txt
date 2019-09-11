@@ -1,5 +1,5 @@
 # set target name
-set(LIBRARY_TARGET_NAME ${PROJECT_NAME}MessageHandler)
+set(LIBRARY_TARGET_NAME MessageHandler)
 
 # matlogger2 is required
 find_package(matlogger2 REQUIRED)
@@ -22,12 +22,14 @@ add_library(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TAR
 # set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION}
 #   PUBLIC_HEADER "${${LIBRARY_TARGET_NAME}_HDR}")
 
+add_library(${PROJECT_NAME}::${LIBRARY_TARGET_NAME} ALIAS ${LIBRARY_TARGET_NAME})
+
 # add include directories to the build.
 target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 
-target_link_libraries(${LIBRARY_TARGET_NAME} ${YARP_LIBRARIES} matlogger2::matlogger2 ${PROJECT_NAME})
+target_link_libraries(${LIBRARY_TARGET_NAME} ${YARP_LIBRARIES} matlogger2::matlogger2 YarpMatLogger::CustomMsg)
 
 install(TARGETS ${LIBRARY_TARGET_NAME}
         EXPORT  ${PROJECT_NAME}

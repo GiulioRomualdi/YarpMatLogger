@@ -1,5 +1,5 @@
 # set target name
-set(LIBRARY_TARGET_NAME ${PROJECT_NAME})
+set(LIBRARY_TARGET_NAME CustomMsg)
 
 set(${LIBRARY_TARGET_NAME}_THRIFT_HDR
   thrifts/MatrixCollection.thrift
@@ -18,6 +18,8 @@ add_library(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TAR
 
 # set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES VERSION ${${PROJECT_NAME}_VERSION}
 #   PUBLIC_HEADER "${${LIBRARY_TARGET_NAME}_HDR}")
+
+add_library(${PROJECT_NAME}::${LIBRARY_TARGET_NAME} ALIAS ${LIBRARY_TARGET_NAME})
 
 # add include directories to the build.
 target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC
