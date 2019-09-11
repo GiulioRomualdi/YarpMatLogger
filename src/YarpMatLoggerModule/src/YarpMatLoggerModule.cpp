@@ -20,6 +20,7 @@
 #include <YarpMatLoggerModule.h>
 #include <Utils.hpp>
 #include <VectorHandler.h>
+#include <MatrixCollectionHandler.h>
 #include <TimeHandler.h>
 
 double YarpMatLoggerModule::getPeriod()
@@ -32,68 +33,6 @@ bool YarpMatLoggerModule::close()
     m_rpcPort.close();
     return true;
 }
-
-// bool YarpMatLoggerModule::respond(const yarp::os::Bottle& command, yarp::os::Bottle& reply)
-// {
-//     // if (command.get(0).asString() == "quit")
-//     // {
-//     //     if(!m_stream.is_open())
-//     //     {
-//     //         yError() << "[RPC Server] The stream is not open.";
-//     //         reply.addInt(0);
-//     //         return true;
-//     //     }
-//     //     m_stream.close();
-//     //     reply.addInt(1);
-
-//     //     yInfo() << "[RPC Server] The stream is closed.";
-//     //     return true;
-//     // }
-//     // else if (command.get(0).asString() == "record")
-//     // {
-//     //     if(m_stream.is_open())
-//     //     {
-//     //         yError() << "[RPC Server] The stream is already open.";
-//     //         reply.addInt(0);
-//     //         return false;
-//     //     }
-
-//     //     m_numberOfValues = command.size() - 1;
-
-//     //     std::string head{"time "};
-//     //     for(int i = 0; i < m_numberOfValues; i++)
-//     //         head += command.get(i + 1).asString() + " ";
-
-//     //     yInfo() << "[RPC Server] The following data will be stored: "
-//     //             << head;
-
-//     //     // get the current time
-//     //     m_time0 = yarp::os::Time::now();
-
-//     //     // set the file name
-//     //     std::time_t t = std::time(nullptr);
-//     //     std::tm tm = *std::localtime(&t);
-
-//     //     std::stringstream fileName;
-//     //     fileName << "Dataset_" << std::put_time(&tm, "%Y_%m_%d_%H_%M_%S")
-//     //              << ".txt";
-
-//     //     m_stream.open(fileName.str().c_str());
-
-//     //     // write the head of the table
-//     //     m_stream << head << std::endl;
-
-//     //     reply.addInt(1);
-//     //     return true;
-//     // }
-//     // else
-//     // {
-//     //     yError() << "[RPC Server] Unknown command.";
-//     //     reply.addInt(0);
-//     //     return false;
-//     // }
-//     return true;
-// }
 
 bool YarpMatLoggerModule::configure(yarp::os::ResourceFinder &config)
 {
@@ -159,7 +98,6 @@ bool YarpMatLoggerModule::configure(yarp::os::ResourceFinder &config)
 
         if(dataType == "vector")
         {
-
             std::string label;
             if(!YarpHelper::getStringFromSearchable(dataConfig, "label", label))
             {
@@ -169,6 +107,12 @@ bool YarpMatLoggerModule::configure(yarp::os::ResourceFinder &config)
 
             auto ptr = std::make_shared<VectorHandler>();
             ptr->configure("/" + getName() + "/" + portName, label);
+            m_messages.push_back(ptr);
+        }
+        else if (dataType == "matrix_collection")
+        {
+            auto ptr = std::make_shared<MatrixCollectionHandler>();
+            ptr->configure("/" + getName() + "/" + portName);
             m_messages.push_back(ptr);
         }
     }
