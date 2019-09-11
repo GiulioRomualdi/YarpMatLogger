@@ -15,13 +15,13 @@
 #include <yarp/os/BufferedPort.h>
 
 // include custom msg library
-#include <MatrixCollection.h>
+#include <MatrixCollection/Msg.h>
 
 #include <MessageHandler.h>
 
 class MatrixCollectionHandler : public MessageHandler
 {
-    yarp::os::BufferedPort<MatrixCollection> m_port;
+    yarp::os::BufferedPort<MatrixCollection::Msg> m_port;
 
 public:
 

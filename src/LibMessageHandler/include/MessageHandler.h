@@ -14,14 +14,6 @@
 // matlogger2
 #include <matlogger2/matlogger2.h>
 
-// YARP
-#include <yarp/os/BufferedPort.h>
-#include <yarp/os/Searchable.h>
-#include <yarp/sig/Vector.h>
-
-// include custom msg library
-#include <MatrixCollection.h>
-
 class MessageHandler
 {
 public:
