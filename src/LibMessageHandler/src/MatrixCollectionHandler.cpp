@@ -11,7 +11,7 @@
 #include <MatrixCollectionHandler.h>
 
 
-void MatrixCollectionHandler::configure(const std::string &portName, const std::string& dataName)
+void MatrixCollectionHandler::configure(const std::string &portName)
 {
     m_port.open(portName);
 

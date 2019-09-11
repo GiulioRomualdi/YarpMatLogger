@@ -1,12 +1,12 @@
 /**
- * @file MessageHandler.h
+ * @file VectorHandler.h
  * @author Giulio Romualdi
  * @copyright  Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
  * @date 2019
  */
 
-#ifndef MESSAGE_HANDLER_H
-#define MESSAGE_HANDLER_H
+#ifndef TIME_HANDLER_H
+#define TIME_HANDLER_H
 
 // std
 #include <memory>
@@ -16,17 +16,21 @@
 
 // YARP
 #include <yarp/os/BufferedPort.h>
-#include <yarp/os/Searchable.h>
 #include <yarp/sig/Vector.h>
 
 // include custom msg library
-#include <MatrixCollection.h>
+#include <MessageHandler.h>
 
-class MessageHandler
+class TimeHandler : public MessageHandler
 {
+    yarp::os::BufferedPort<yarp::sig::Vector> m_port;
+    std::string m_dataName;
+
 public:
 
-    virtual bool saveData(XBot::MatLogger2::Ptr& logger) = 0;
+    void configure(const std::string& dataName);
+
+    bool saveData(XBot::MatLogger2::Ptr& logger) final;
 };
 
 #endif

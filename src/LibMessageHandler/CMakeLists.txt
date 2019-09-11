@@ -7,12 +7,14 @@ find_package(matlogger2 REQUIRED)
 set(${LIBRARY_TARGET_NAME}_HDR
   include/MessageHandler.h
   include/VectorHandler.h
+  include/TimeHandler.h
   include/MatrixCollectionHandler.h
   )
 
 set(${LIBRARY_TARGET_NAME}_SRC
   src/VectorHandler.cpp
   src/MatrixCollectionHandler.cpp
+  src/TimeHandler.cpp
   )
 
 

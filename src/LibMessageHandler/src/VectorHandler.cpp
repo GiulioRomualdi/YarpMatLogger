@@ -10,7 +10,6 @@
 
 #include <VectorHandler.h>
 
-
 void VectorHandler::configure(const std::string &portName, const std::string& dataName)
 {
     m_port.open(portName);

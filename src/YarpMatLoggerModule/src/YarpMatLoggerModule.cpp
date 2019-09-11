@@ -20,6 +20,7 @@
 #include <YarpMatLoggerModule.h>
 #include <Utils.hpp>
 #include <VectorHandler.h>
+#include <TimeHandler.h>
 
 double YarpMatLoggerModule::getPeriod()
 {
@@ -166,19 +167,22 @@ bool YarpMatLoggerModule::configure(yarp::os::ResourceFinder &config)
                 return false;
             }
 
-
             auto ptr = std::make_shared<VectorHandler>();
             ptr->configure("/" + getName() + "/" + portName, label);
             m_messages.push_back(ptr);
         }
     }
 
+    // log the time
+    auto ptr = std::make_shared<TimeHandler>();
+    ptr->configure("time");
+    m_messages.push_back(ptr);
+
     return true;
 }
 
 bool YarpMatLoggerModule::updateModule()
 {
-
     if(m_isRecording)
     {
         for(const auto& message : m_messages)

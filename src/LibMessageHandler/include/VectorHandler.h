@@ -28,7 +28,7 @@ class VectorHandler : public MessageHandler
 
 public:
 
-    void configure(const std::string &portName, const std::string& dataName) final;
+    void configure(const std::string &portName, const std::string& dataName);
 
     bool saveData(XBot::MatLogger2::Ptr& logger) final;
 };
