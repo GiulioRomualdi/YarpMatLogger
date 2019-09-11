@@ -1,1 +1,1 @@
-yarp_install(FILES YarpMatLoggerModuleConfig.ini DESTINATION ${YARP_CONTEXTS_INSTALL_DIR})
+yarp_install(DIRECTORY YarpMatLogger DESTINATION ${YARP_CONTEXTS_INSTALL_DIR})

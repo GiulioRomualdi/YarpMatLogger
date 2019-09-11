@@ -27,6 +27,7 @@ int main(int argc, char * argv[])
     yarp::os::ResourceFinder& rf = yarp::os::ResourceFinder::getResourceFinderSingleton();
 
     rf.setDefaultConfigFile("YarpMatLoggerModuleConfig.ini");
+    rf.setDefaultContext("YarpMatLogger");
 
     rf.configure(argc, argv);
 
