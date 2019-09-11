@@ -1,0 +1,6 @@
+# Authors: Giulio Romualdi
+# CopyPolicy: Released under the terms of the LGPLv2.1 or later
+
+if(NOT TARGET YarpMatLogger)
+  include("${CMAKE_CURRENT_LIST_DIR}/YarpMatLoggerTargets.cmake")
+endif()
