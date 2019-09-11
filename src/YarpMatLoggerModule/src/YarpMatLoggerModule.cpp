@@ -134,40 +134,6 @@ bool YarpMatLoggerModule::updateModule()
             message->saveData(m_logger);
         }
     }
-// // WalkingMessage *data = nullptr;
-
-    // // try to read data from port
-    // auto data = m_dataPort.read(false);
-
-    // if (data != NULL)
-    // {
-    //     for(const auto & vector: data->vectors)
-    //     {
-    //         vector.first;
-
-    //     }
-
-    //     // if(!m_stream.is_open())
-    //     // {
-    //     //     yError() << "[updateModule] No stream is open. I cannot store your data.";
-    //     //     return false;
-    //     // }
-
-    //     // if(data->size() != m_numberOfValues)
-    //     // {
-    //     //     yError() << "[updateModule] The size of the vector is not the one expected. Expected: "
-    //     //              << m_numberOfValues << " received: " << data->size();
-    //     //     return false;
-    //     // }
-
-    //     // // write into the file
-    //     // double time = yarp::os::Time::now() - m_time0;
-    //     // m_stream << time << " ";
-    //     // for(int i = 0; i < m_numberOfValues; i++)
-    //     //     m_stream << (*data)[i] << " ";
-
-    //     // m_stream << std::endl;
-    // }
     return true;
 }
 
