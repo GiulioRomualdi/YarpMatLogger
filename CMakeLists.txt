@@ -9,9 +9,6 @@ project(YarpMatLogger
   LANGUAGES CXX C
   VERSION 0.0.1)
 
-message(STATUS ****************** ${PROJECT_NAME})
-message(STATUS ****************** ${${PROJECT_NAME}_VERSION})
-
 # ouptut paths
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
@@ -26,7 +23,7 @@ if(MSVC)
 endif()
 
 ## Build as shared library
-option(BUILD_SHARED_LIBS "Build libraries as shared as opposed to static" ON)
+# option(BUILD_SHARED_LIBS "Build libraries as shared as opposed to static" ON)
 
 include(AddInstallRPATHSupport)
 add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_FULL_BINDIR}"
