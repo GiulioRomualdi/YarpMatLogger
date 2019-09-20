@@ -1,2 +1,2 @@
-add_subdirectory(thrifts)
 add_subdirectory(MatrixCollection)
+

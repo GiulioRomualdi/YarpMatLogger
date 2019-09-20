@@ -74,7 +74,8 @@ install_basic_package_files(${PROJECT_NAME}
   VERSION ${${PROJECT_NAME}_VERSION}
   COMPATIBILITY AnyNewerVersion
   VARS_PREFIX ${PROJECT_NAME}
-  NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+  NO_CHECK_REQUIRED_COMPONENTS_MACRO
+  CONFIG_TEMPLATE ${CMAKE_SOURCE_DIR}/cmake/YarpMatLoggerConfig.cmake.ini)
 
 # Add the uninstall target
 include(AddUninstallTarget)

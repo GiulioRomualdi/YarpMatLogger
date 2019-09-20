@@ -8,7 +8,7 @@
 // YARP
 #include <yarp/eigen/Eigen.h>
 
-#include <MatrixCollectionHandler.h>
+#include <YarpMatLogger/MessageHandler/MatrixCollectionHandler.h>
 
 
 void MatrixCollectionHandler::configure(const std::string &portName)

@@ -8,7 +8,7 @@
 
 #include <yarp/eigen/Eigen.h>
 
-#include <VectorHandler.h>
+#include <YarpMatLogger/MessageHandler/VectorHandler.h>
 
 void VectorHandler::configure(const std::string &portName, const std::string& dataName)
 {

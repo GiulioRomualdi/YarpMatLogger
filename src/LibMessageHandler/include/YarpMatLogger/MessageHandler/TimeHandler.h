@@ -19,7 +19,7 @@
 #include <yarp/sig/Vector.h>
 
 // include custom msg library
-#include <MessageHandler.h>
+#include "MessageHandler.h"
 
 class TimeHandler : public MessageHandler
 {
