@@ -11,11 +11,11 @@
 
 // std
 #include <fstream>
-
+#include <mutex>
 // YARP
 #include <yarp/os/RFModule.h>
 #include <yarp/os/RpcServer.h>
-#include <MessageHandler.h>
+#include <YarpMatLogger/MessageHandler/MessageHandler.h>
 
 #include <thrifts/YarpMatLoggerCommands.h>
 
@@ -32,6 +32,8 @@ class YarpMatLoggerModule : public yarp::os::RFModule, public YarpMatLoggerComma
     XBot::MatLogger2::Ptr m_logger;
 
     bool m_isRecording{false};
+
+    std::mutex m_mutex; /**< Mutex. */
 
 public:
 

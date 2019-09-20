@@ -10,6 +10,7 @@
 
 #include <YarpMatLogger/MessageHandler/MatrixCollectionHandler.h>
 
+#include <iostream>
 
 void MatrixCollectionHandler::configure(const std::string &portName)
 {
@@ -20,7 +21,7 @@ void MatrixCollectionHandler::configure(const std::string &portName)
 
 bool MatrixCollectionHandler::saveData(XBot::MatLogger2::Ptr& logger)
 {
-    auto data = m_port.read(false);
+    MatrixCollection::Msg* data = m_port.read(false);
 
     // no data available
     if(data == nullptr)

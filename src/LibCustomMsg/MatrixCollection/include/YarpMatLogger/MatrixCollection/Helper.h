@@ -10,9 +10,6 @@ namespace MatrixCollection
     {
         Msg m_message;
         yarp::os::BufferedPort<Msg> m_port;
-
-
-
     public:
         template <typename T>
         void addVector(const std::string& label, const T& vector)

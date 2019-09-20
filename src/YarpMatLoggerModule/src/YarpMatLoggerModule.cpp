@@ -19,9 +19,9 @@
 
 #include <YarpMatLoggerModule.h>
 #include <Utils.hpp>
-#include <VectorHandler.h>
-#include <MatrixCollectionHandler.h>
-#include <TimeHandler.h>
+#include <YarpMatLogger/MessageHandler/VectorHandler.h>
+#include <YarpMatLogger/MessageHandler/MatrixCollectionHandler.h>
+#include <YarpMatLogger/MessageHandler/TimeHandler.h>
 
 double YarpMatLoggerModule::getPeriod()
 {
@@ -114,6 +114,8 @@ bool YarpMatLoggerModule::configure(yarp::os::ResourceFinder &config)
             auto ptr = std::make_shared<MatrixCollectionHandler>();
             ptr->configure("/" + getName() + "/" + portName);
             m_messages.push_back(ptr);
+
+            std::cerr << "matrix_collection \n";
         }
     }
 
@@ -127,6 +129,8 @@ bool YarpMatLoggerModule::configure(yarp::os::ResourceFinder &config)
 
 bool YarpMatLoggerModule::updateModule()
 {
+    std::lock_guard<std::mutex> guard(m_mutex);
+
     if(m_isRecording)
     {
         for(const auto& message : m_messages)
@@ -139,6 +143,8 @@ bool YarpMatLoggerModule::updateModule()
 
 bool YarpMatLoggerModule::record()
 {
+    std::lock_guard<std::mutex> guard(m_mutex);
+
     std::stringstream fileName;
     std::time_t t = std::time(nullptr);
     std::tm tm = *std::localtime(&t);
@@ -156,6 +162,8 @@ bool YarpMatLoggerModule::record()
 
 bool YarpMatLoggerModule::stop()
 {
+    std::lock_guard<std::mutex> guard(m_mutex);
+
     m_isRecording = false;
 
     m_logger.reset();

@@ -1,4 +1,4 @@
 add_subdirectory(LibCustomMsg)
 add_subdirectory(LibMessageHandler)
-#add_subdirectory(YarpMatLoggerModule)
+add_subdirectory(YarpMatLoggerModule)
 add_subdirectory(Utilities)
