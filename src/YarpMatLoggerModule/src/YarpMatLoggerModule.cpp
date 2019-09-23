@@ -21,7 +21,6 @@
 #include <Utils.hpp>
 #include <YarpMatLogger/MessageHandler/VectorHandler.h>
 #include <YarpMatLogger/MessageHandler/MatrixCollectionHandler.h>
-#include <YarpMatLogger/MessageHandler/TimeHandler.h>
 
 double YarpMatLoggerModule::getPeriod()
 {
@@ -118,12 +117,6 @@ bool YarpMatLoggerModule::configure(yarp::os::ResourceFinder &config)
             std::cerr << "matrix_collection \n";
         }
     }
-
-    // log the time
-    auto ptr = std::make_shared<TimeHandler>();
-    ptr->configure("time");
-    m_messages.push_back(ptr);
-
     return true;
 }
 
@@ -133,9 +126,11 @@ bool YarpMatLoggerModule::updateModule()
 
     if(m_isRecording)
     {
+
+        double time = yarp::os::Time::now();
         for(const auto& message : m_messages)
         {
-            message->saveData(m_logger);
+            message->saveData(m_logger, time);
         }
     }
     return true;

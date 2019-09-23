@@ -27,7 +27,7 @@ public:
 
     void configure(const std::string &portName);
 
-    bool saveData(XBot::MatLogger2::Ptr& logger) final;
+    bool saveData(XBot::MatLogger2::Ptr& logger, const double& time) final;
 };
 
 #endif

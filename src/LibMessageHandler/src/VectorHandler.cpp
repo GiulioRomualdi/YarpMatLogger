@@ -16,7 +16,7 @@ void VectorHandler::configure(const std::string &portName, const std::string& da
     m_dataName = dataName;
 }
 
-bool VectorHandler::saveData(XBot::MatLogger2::Ptr& logger)
+bool VectorHandler::saveData(XBot::MatLogger2::Ptr& logger, const double& time)
 {
     auto data = m_port.read(false);
 
@@ -25,6 +25,7 @@ bool VectorHandler::saveData(XBot::MatLogger2::Ptr& logger)
         return false;
 
     logger->add(m_dataName, yarp::eigen::toEigen(*data));
+    logger->add(m_dataName + "_time", time);
 
     return true;
 }

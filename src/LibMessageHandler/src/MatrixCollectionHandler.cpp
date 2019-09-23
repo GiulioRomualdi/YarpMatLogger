@@ -19,7 +19,7 @@ void MatrixCollectionHandler::configure(const std::string &portName)
     return;
 }
 
-bool MatrixCollectionHandler::saveData(XBot::MatLogger2::Ptr& logger)
+bool MatrixCollectionHandler::saveData(XBot::MatLogger2::Ptr& logger, const double& time)
 {
     MatrixCollection::Msg* data = m_port.read(false);
 
@@ -29,11 +29,17 @@ bool MatrixCollectionHandler::saveData(XBot::MatLogger2::Ptr& logger)
 
     // log all the vectors
     for(auto const& vector : data->vectors)
+    {
         logger->add(vector.first, yarp::eigen::toEigen(vector.second));
+        logger->add(vector.first + "_time", time);
+    }
 
     // log all the matrices
     for(auto const& matrix : data->matrices)
+    {
         logger->add(matrix.first, yarp::eigen::toEigen(matrix.second));
+        logger->add(matrix.first + "_time", time);
+    }
 
     return true;
 }

@@ -18,7 +18,7 @@ class MessageHandler
 {
 public:
 
-    virtual bool saveData(XBot::MatLogger2::Ptr& logger) = 0;
+    virtual bool saveData(XBot::MatLogger2::Ptr& logger, const double& time) = 0;
 };
 
 #endif

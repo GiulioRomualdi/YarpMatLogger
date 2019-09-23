@@ -7,14 +7,12 @@ find_package(matlogger2 REQUIRED)
 set(${LIBRARY_TARGET_NAME}_HDR
   include/YarpMatLogger/MessageHandler/MessageHandler.h
   include/YarpMatLogger/MessageHandler/VectorHandler.h
-  include/YarpMatLogger/MessageHandler/TimeHandler.h
   include/YarpMatLogger/MessageHandler/MatrixCollectionHandler.h
   )
 
 set(${LIBRARY_TARGET_NAME}_SRC
   src/VectorHandler.cpp
   src/MatrixCollectionHandler.cpp
-  src/TimeHandler.cpp
   )
 
 
